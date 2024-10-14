@@ -60,7 +60,7 @@ function __init__()
 end
 
 "Helper function for reading a .parquet file to a DataFrame (while ensuring the connection closes after the file is read)."
-function parquet2df(file::String)
+function parquet2df(file::AbstractString)
     open(file) do io
         ds = Parquet2.Dataset(io)
         df = DataFrame(ds)
@@ -70,11 +70,11 @@ function parquet2df(file::String)
 end
 
 """
-    from_url(url::String; file_type::String = ".parquet")
+    from_url(url::AbstractString; file_type::AbstractString = ".parquet")
 
 Reads a file from a URL and caches it. `file_type` can be one of `".parquet"`, `".csv"`, or `".csv.gz"`.
 """
-function from_url(url::String; file_type::String = ".parquet")
+function from_url(url::AbstractString; file_type::AbstractString = ".parquet")
     if !(file_type in [".parquet",".csv",".csv.gz"])
         throw(DomainError(file_type,"`file_type` must be one of either \".parquet\", \".csv\", or \".csv.gz\"."))
     end
@@ -101,7 +101,7 @@ function from_url(url::String; file_type::String = ".parquet")
 end
 
 "..."
-function from_url(url::String, seasons::Int; file_type::String = ".parquet")
+function from_url(url::AbstractString, seasons::Int; file_type::AbstractString = ".parquet")
     if !(file_type in [".parquet",".csv",".csv.gz"])
         throw(DomainError(file_type,"`file_type` must be one of either \".parquet\", \".csv\", or \".csv.gz\"."))
     end
