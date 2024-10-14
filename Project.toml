@@ -1,7 +1,7 @@
 name = "NFLData"
 uuid = "38e18452-fdda-4cae-b91e-088906595f57"
 authors = ["John Edwards"]
-version = "1.1.4"
+version = "1.1.5"
 
 [deps]
 Artifacts = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
