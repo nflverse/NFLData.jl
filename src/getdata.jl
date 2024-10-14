@@ -86,7 +86,7 @@ function from_url(url::AbstractString; file_type::AbstractString = ".parquet")
         if file_type == ".parquet"
             df = parquet2df(fname)
         elseif file_type in [".csv",".csv.gz"]
-            df = DataFrame(CSV.File(fname))
+            df = DataFrame(CSV.File(fname, stringtype = String))
         end
     else
         if file_type == ".parquet"
@@ -94,7 +94,7 @@ function from_url(url::AbstractString; file_type::AbstractString = ".parquet")
             ds = Parquet2.Dataset(res.body)
             df = DataFrame(ds)
         elseif file_type in [".csv",".csv.gz"]
-            df = DataFrame(CSV.File(fname))
+            df = DataFrame(CSV.File(fname, stringtype = String))
         end
     end 
     return df
@@ -113,7 +113,7 @@ function from_url(url::AbstractString, seasons::Int; file_type::AbstractString =
         if file_type == ".parquet"
             df = parquet2df(fname)
         elseif file_type in [".csv",".csv.gz"]
-            df = DataFrame(CSV.File(fname))
+            df = DataFrame(CSV.File(fname, stringtype = String))
         end
     else
         if file_type == ".parquet"
@@ -121,7 +121,7 @@ function from_url(url::AbstractString, seasons::Int; file_type::AbstractString =
             ds = Parquet2.Dataset(res.body)
             df = DataFrame(ds)
         elseif file_type in [".csv",".csv.gz"]
-            df = DataFrame(CSV.File(fname))
+            df = DataFrame(CSV.File(fname, stringtype = String))
         end
     end 
     return df
