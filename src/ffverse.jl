@@ -20,7 +20,7 @@ function load_ff_playerids()
 end
 
 """
-    load_ff_rankings(type::String = "draft")
+    load_ff_rankings(type::AbstractString = "draft")
 
 Load current fantasy football rankings from FantasyPros.com. The argument `type` has three valid parameters:
 * `"draft"`: FantasyPros rankings for draft leagues for the current fantasy football season. The default parameter.
@@ -29,7 +29,7 @@ Load current fantasy football rankings from FantasyPros.com. The argument `type`
 
 For information about this resource, see its data dictionary [here](https://nflreadr.nflverse.com/articles/dictionary_ff_rankings.html).
 """
-function load_ff_rankings(type::String = "draft")
+function load_ff_rankings(type::AbstractString = "draft")
     if !(type in ["draft","week","all"])
         throw(DomainError(type,"Please pass in one of \"draft\", \"week\", or \"all\" for the argument `type`!"))
     end
@@ -44,7 +44,7 @@ function load_ff_rankings(type::String = "draft")
 end
 
 """
-    function load_ff_opportunity(seasons::Number = most_recent_season(), stat_type::String = "weekly", model_version::String = "latest")
+    function load_ff_opportunity(seasons::Number = most_recent_season(), stat_type::AbstractString = "weekly", model_version::AbstractString = "latest")
 
 Load the FFOpportunity dataset for a given season. `seasons` indicates the years to pull data from and defaults to the most recently played NFL season. Pass in `seasons = true` for all available seasons.
 `stat_type` takes three potential arguments:
@@ -59,8 +59,8 @@ Load the FFOpportunity dataset for a given season. `seasons` indicates the years
 For information about this resource, see its data dictionary [here](https://nflreadr.nflverse.com/articles/dictionary_ff_opportunity.html).
 """
 function load_ff_opportunity(seasons = most_recent_season(), 
-    stat_type::String = "weekly", 
-    model_version::String = "latest")
+    stat_type::AbstractString = "weekly", 
+    model_version::AbstractString = "latest")
     seasons = check_years(seasons, 2006, "FF opportunity data")
     if !(stat_type in ["weekly","pbp_pass","pbp_rush"])
         throw(DomainError(stat_type,"Please pass in one of \"weekly\",\"pbp_pass\",\"pbp_rush\" for the argument `stat_type`!"))
