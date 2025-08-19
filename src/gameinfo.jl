@@ -1,15 +1,14 @@
 module gameinfo
 using Dates
 
-include("helpers.jl")
-using .helpers
-
 include("getdata.jl")
 using .getdata
 
+include("helpers.jl")
+using .helpers
+
 export load_officials
-export load_schedules   
-export most_recent_season
+export load_schedules 
 export get_current_week
 
 """
@@ -30,27 +29,6 @@ function load_schedules()
     df = from_url("https://github.com/nflverse/nfldata/raw/master/data/games",file_type=".csv")
     df.roof = ifelse.(in.(df.roof, [["closed", "dome", "outdoors", "open", "retractable"]]), df.roof, missing)
     return df
-end
-
-"""
-    most_recent_season(roster::Bool = false)
-
-Return the most recent NFL season (including in-progress season).
-
-If `roster=true`, the upcoming NFL season is returned if the system date is March 15th or later. Defaults to `false`.
-
-"""
-function most_recent_season(roster::Bool = false)
-    labor_day = compute_labor_day(year(today()))
-    season_opener = labor_day + Day(3)
-    if (!roster && (today() >= season_opener)) || 
-        (roster && (month(today()) == 3) && (day(today()) >= 15)) || 
-        (roster && (month(today()) >= 3))
-        most_rec = year(today())
-    else
-        most_rec = year(today()) - 1
-    end
-    return most_rec
 end
 
 """

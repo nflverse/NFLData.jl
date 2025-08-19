@@ -11,6 +11,7 @@ export nflverse_game_id
 export clean_team_abbrs
 export clean_player_names
 export clean_homeaway
+export most_recent_season
 
 function __init__()
     global team_abbr_mapping = CSV.read(joinpath(artifact"data","team_abbr_mapping.csv"),DataFrame)
@@ -20,14 +21,13 @@ end
 
 "Internal functon, test if a data is available for a given year."
 function check_years(years_to_check, start_year, release, roster = false)
-    most_rec_sea = 2024
     if years_to_check == true
-        years_to_check = start_year:most_rec_sea
+        years_to_check = start_year:most_recent_season(roster)
     end
     if minimum(years_to_check) < start_year
         throw(DomainError(minimum(years_to_check),"No $release available prior to $start_year\\!"))
-    elseif minimum(years_to_check) > most_rec_sea
-        throw(DomainError(minimum(years_to_check),"No $release available after $most_rec_sea!"))
+    elseif minimum(years_to_check) > most_recent_season(roster)
+        throw(DomainError(minimum(years_to_check),"No $release available after $(most_recent_season(roster))!"))
     end
     if length(years_to_check) == 1
         years_to_check = [years_to_check]
@@ -207,6 +207,27 @@ function clean_homeaway(dataframe::AbstractDataFrame;invert = missing)
     end
     
     return(vcat(home, away))
+end
+
+"""
+    most_recent_season(roster::Bool = false)
+
+Return the most recent NFL season (including in-progress season).
+
+If `roster=true`, the upcoming NFL season is returned if the system date is March 15th or later. Defaults to `false`.
+
+"""
+function most_recent_season(roster::Bool = false)
+    labor_day = compute_labor_day(year(today()))
+    season_opener = labor_day + Day(3)
+    if (!roster && (today() >= season_opener)) || 
+        (roster && (month(today()) == 3) && (day(today()) >= 15)) || 
+        (roster && (month(today()) >= 3))
+        most_rec = year(today())
+    else
+        most_rec = year(today()) - 1
+    end
+    return most_rec
 end
 
 end
