@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Home · NFLData.jl</title><meta name="title" content="Home · NFLData.jl"/><meta property="og:title" content="Home · NFLData.jl"/><meta property="twitter:title" content="Home · NFLData.jl"/><meta name="description" content="Documentation for NFLData.jl."/><meta property="og:description" content="Documentation for NFLData.jl."/><meta property="twitter:description" content="Documentation for NFLData.jl."/><script data-outdated-warner src="assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="assets/documenter.js"></script><script src="search_index.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href><img src="assets/logo.png" alt="NFLData.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href>NFLData.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li class="is-active"><a class="tocitem" href>Home</a><ul class="internal"><li><a class="tocitem" href="#Installation"><span>Installation</span></a></li><li><a class="tocitem" href="#Getting-Started"><span>Getting Started</span></a></li><li><a class="tocitem" href="#Caching"><span>Caching</span></a></li><li><a class="tocitem" href="#Logo-Attribution"><span>Logo Attribution</span></a></li></ul></li><li><a class="tocitem" href="loaders/">Loaders</a></li><li><a class="tocitem" href="helpers/">Utilities</a></li><li><a class="tocitem" href="caching/">Caching</a></li><li><a class="tocitem" href="additional/">NFLVerse and additional resources</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Home</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Home</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/nflverse/NFLData.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/nflverse/NFLData.jl/blob/main/docs/src/index.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="NFLData.jl"><a class="docs-heading-anchor" href="#NFLData.jl">NFLData.jl</a><a id="NFLData.jl-1"></a><a class="docs-heading-anchor-permalink" href="#NFLData.jl" title="Permalink"></a></h1><p><em>A package for intelligently loading NFL data into Julia.</em></p><p><code>NFLData.jl</code> is a low-level data loader, designed to be a native Julia implementation of the popular <code>{nflreadr}</code> package. <code>NFLData.jl</code> makes a number of NFL data resources available quickly and handily in <code>DataFrame</code> format, while intelligently caching and updating these data sources to accomodate in-season changes.</p><h2 id="Installation"><a class="docs-heading-anchor" href="#Installation">Installation</a><a id="Installation-1"></a><a class="docs-heading-anchor-permalink" href="#Installation" title="Permalink"></a></h2><p>NFLData.jl is available from the Julia package registry, and can be installed with the following one liner.</p><pre><code class="language-julia hljs">using Pkg; Pkg.add(&quot;NFLData&quot;)</code></pre><p>You can also add the package using the Pkg.jl REPL. Open an interactive Julia session, then press <code>]</code> to open the REPL, then run <code>add NFLData</code>.</p><h2 id="Getting-Started"><a class="docs-heading-anchor" href="#Getting-Started">Getting Started</a><a id="Getting-Started-1"></a><a class="docs-heading-anchor-permalink" href="#Getting-Started" title="Permalink"></a></h2><p>After installation, return to the Julia repl, and type:</p><pre><code class="language-julia hljs">julia&gt; using NFLData</code></pre><p>You can now load data into your Julia environment. For example, to pull in NFL schedules since 1999, you can use <code>load_schedules()</code>:</p><pre><code class="language-julia hljs">julia&gt; load_schedules()
+6978×46 DataFrame
+  Row │ game_id          season  game_type  week   gameday     weekday   gametime  away_te ⋯
+      │ String15         Int64   String3    Int64  Date        String15  Time      String3 ⋯
+──────┼─────────────────────────────────────────────────────────────────────────────────────
+    1 │ 1999_01_MIN_ATL    1999  REG            1  1999-09-12  Sunday    missing   MIN     ⋯
+    2 │ 1999_01_KC_CHI     1999  REG            1  1999-09-12  Sunday    missing   KC
+    3 │ 1999_01_PIT_CLE    1999  REG            1  1999-09-12  Sunday    missing   PIT
+    4 │ 1999_01_OAK_GB     1999  REG            1  1999-09-12  Sunday    missing   OAK
+    5 │ 1999_01_BUF_IND    1999  REG            1  1999-09-12  Sunday    missing   BUF     ⋯
+    6 │ 1999_01_SF_JAX     1999  REG            1  1999-09-12  Sunday    missing   SF
+    7 │ 1999_01_CAR_NO     1999  REG            1  1999-09-12  Sunday    missing   CAR
+    8 │ 1999_01_NE_NYJ     1999  REG            1  1999-09-12  Sunday    missing   NE
+    9 │ 1999_01_ARI_PHI    1999  REG            1  1999-09-12  Sunday    missing   ARI     ⋯
+   10 │ 1999_01_DET_SEA    1999  REG            1  1999-09-12  Sunday    missing   DET
+   11 │ 1999_01_BAL_STL    1999  REG            1  1999-09-12  Sunday    missing   BAL
+  ⋮   │        ⋮           ⋮         ⋮        ⋮        ⋮          ⋮         ⋮          ⋮   ⋱
+ 6969 │ 2024_18_CHI_GB     2024  REG           18  2025-01-05  Sunday    13:00:00  CHI
+ 6970 │ 2024_18_JAX_IND    2024  REG           18  2025-01-05  Sunday    13:00:00  JAX     ⋯
+ 6971 │ 2024_18_SEA_LA     2024  REG           18  2025-01-05  Sunday    13:00:00  SEA
+ 6972 │ 2024_18_LAC_LV     2024  REG           18  2025-01-05  Sunday    13:00:00  LAC
+ 6973 │ 2024_18_BUF_NE     2024  REG           18  2025-01-05  Sunday    13:00:00  BUF
+ 6974 │ 2024_18_MIA_NYJ    2024  REG           18  2025-01-05  Sunday    13:00:00  MIA     ⋯
+ 6975 │ 2024_18_NYG_PHI    2024  REG           18  2025-01-05  Sunday    13:00:00  NYG
+ 6976 │ 2024_18_CIN_PIT    2024  REG           18  2025-01-05  Sunday    13:00:00  CIN
+ 6977 │ 2024_18_NO_TB      2024  REG           18  2025-01-05  Sunday    13:00:00  NO
+ 6978 │ 2024_18_HOU_TEN    2024  REG           18  2025-01-05  Sunday    13:00:00  HOU     ⋯
+                                                            39 columns and 6957 rows omitted</code></pre><p>You can load nflfastR play-by-play data into Julia with <code>load_pbp(years)</code>. The function can take either one or multiple years as arguments, or you can pass <code>true</code> into the function to pull in all years of PBP data.</p><pre><code class="language-julia hljs">julia&gt; load_pbp(2023)
+49665×372 DataFrame
+   Row │ play_id   game_id          old_game_id  home_team  away_team  season_type  week   ⋯
+       │ Float64?  String?          String?      String?    String?    String?      Int32? ⋯
+───────┼────────────────────────────────────────────────────────────────────────────────────
+     1 │      1.0  2023_01_ARI_WAS  2023091007   WAS        ARI        REG               1 ⋯
+     2 │     39.0  2023_01_ARI_WAS  2023091007   WAS        ARI        REG               1
+     3 │     55.0  2023_01_ARI_WAS  2023091007   WAS        ARI        REG               1
+     4 │     77.0  2023_01_ARI_WAS  2023091007   WAS        ARI        REG               1
+     5 │    102.0  2023_01_ARI_WAS  2023091007   WAS        ARI        REG               1 ⋯
+     6 │    124.0  2023_01_ARI_WAS  2023091007   WAS        ARI        REG               1
+     7 │    147.0  2023_01_ARI_WAS  2023091007   WAS        ARI        REG               1
+     8 │    172.0  2023_01_ARI_WAS  2023091007   WAS        ARI        REG               1
+     9 │    197.0  2023_01_ARI_WAS  2023091007   WAS        ARI        REG               1 ⋯
+    10 │    220.0  2023_01_ARI_WAS  2023091007   WAS        ARI        REG               1
+    11 │    245.0  2023_01_ARI_WAS  2023091007   WAS        ARI        REG               1
+   ⋮   │    ⋮             ⋮              ⋮           ⋮          ⋮           ⋮         ⋮    ⋱
+ 49656 │   4684.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
+ 49657 │   4709.0  2023_22_SF_KC    2024021100   KC         SF         POST             22 ⋯
+ 49658 │   4734.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
+ 49659 │   4771.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
+ 49660 │   4759.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
+ 49661 │   4791.0  2023_22_SF_KC    2024021100   KC         SF         POST             22 ⋯
+ 49662 │   4813.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
+ 49663 │   4835.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
+ 49664 │   4860.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
+ 49665 │   4881.0  2023_22_SF_KC    2024021100   KC         SF         POST             22 ⋯
+                                                          365 columns and 49644 rows omitted
+
+julia&gt; load_pbp(2022:2023)
+99099×372 DataFrame
+   Row │ play_id   game_id          old_game_id  home_team  away_team  season_type  week   ⋯
+       │ Float64?  String?          String?      String?    String?    String?      Int32? ⋯
+───────┼────────────────────────────────────────────────────────────────────────────────────
+     1 │      1.0  2022_01_BAL_NYJ  2022091107   NYJ        BAL        REG               1 ⋯
+     2 │     43.0  2022_01_BAL_NYJ  2022091107   NYJ        BAL        REG               1
+     3 │     68.0  2022_01_BAL_NYJ  2022091107   NYJ        BAL        REG               1
+     4 │     89.0  2022_01_BAL_NYJ  2022091107   NYJ        BAL        REG               1
+     5 │    115.0  2022_01_BAL_NYJ  2022091107   NYJ        BAL        REG               1 ⋯
+     6 │    136.0  2022_01_BAL_NYJ  2022091107   NYJ        BAL        REG               1
+     7 │    172.0  2022_01_BAL_NYJ  2022091107   NYJ        BAL        REG               1
+     8 │    202.0  2022_01_BAL_NYJ  2022091107   NYJ        BAL        REG               1
+     9 │    230.0  2022_01_BAL_NYJ  2022091107   NYJ        BAL        REG               1 ⋯
+    10 │    254.0  2022_01_BAL_NYJ  2022091107   NYJ        BAL        REG               1
+    11 │    275.0  2022_01_BAL_NYJ  2022091107   NYJ        BAL        REG               1
+   ⋮   │    ⋮             ⋮              ⋮           ⋮          ⋮           ⋮         ⋮    ⋱
+ 99090 │   4684.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
+ 99091 │   4709.0  2023_22_SF_KC    2024021100   KC         SF         POST             22 ⋯
+ 99092 │   4734.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
+ 99093 │   4771.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
+ 99094 │   4759.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
+ 99095 │   4791.0  2023_22_SF_KC    2024021100   KC         SF         POST             22 ⋯
+ 99096 │   4813.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
+ 99097 │   4835.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
+ 99098 │   4860.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
+ 99099 │   4881.0  2023_22_SF_KC    2024021100   KC         SF         POST             22 ⋯
+                                                          365 columns and 99078 rows omitted
+
+julia&gt; load_pbp(true)
+1186651×372 DataFrame
+     Row │ play_id   game_id          old_game_id  home_team  away_team  season_type  week ⋯
+         │ Float64?  String?          String?      String?    String?    String?      Int3 ⋯
+─────────┼──────────────────────────────────────────────────────────────────────────────────
+       1 │     35.0  1999_01_ARI_PHI  1999091200   PHI        ARI        REG               ⋯
+       2 │     60.0  1999_01_ARI_PHI  1999091200   PHI        ARI        REG
+       3 │     82.0  1999_01_ARI_PHI  1999091200   PHI        ARI        REG
+       4 │    103.0  1999_01_ARI_PHI  1999091200   PHI        ARI        REG
+       5 │    126.0  1999_01_ARI_PHI  1999091200   PHI        ARI        REG               ⋯
+       6 │    150.0  1999_01_ARI_PHI  1999091200   PHI        ARI        REG
+       7 │    176.0  1999_01_ARI_PHI  1999091200   PHI        ARI        REG
+       8 │    197.0  1999_01_ARI_PHI  1999091200   PHI        ARI        REG
+       9 │    218.0  1999_01_ARI_PHI  1999091200   PHI        ARI        REG               ⋯
+      10 │    240.0  1999_01_ARI_PHI  1999091200   PHI        ARI        REG
+      11 │    260.0  1999_01_ARI_PHI  1999091200   PHI        ARI        REG
+    ⋮    │    ⋮             ⋮              ⋮           ⋮          ⋮           ⋮         ⋮  ⋱
+ 1186642 │   4104.0  2024_02_TB_DET   2024091503   DET        TB         REG
+ 1186643 │   4130.0  2024_02_TB_DET   2024091503   DET        TB         REG               ⋯
+ 1186644 │   4155.0  2024_02_TB_DET   2024091503   DET        TB         REG
+ 1186645 │   4162.0  2024_02_TB_DET   2024091503   DET        TB         REG
+ 1186646 │   4187.0  2024_02_TB_DET   2024091503   DET        TB         REG
+ 1186647 │   4210.0  2024_02_TB_DET   2024091503   DET        TB         REG               ⋯
+ 1186648 │   4233.0  2024_02_TB_DET   2024091503   DET        TB         REG
+ 1186649 │   4256.0  2024_02_TB_DET   2024091503   DET        TB         REG
+ 1186650 │   4279.0  2024_02_TB_DET   2024091503   DET        TB         REG
+ 1186651 │   4301.0  2024_02_TB_DET   2024091503   DET        TB         REG               ⋯
+                                                        366 columns and 1186630 rows omitted</code></pre><p><code>NFLData.jl</code> is designed to quickly load large datasets into memory. Here, we load a clean Julia session and pull in all seasons of PBP data, containing 362 columns and, as of the time of writing this documentation, 1,186,638 plays.</p><pre><code class="language-julia hljs">julia&gt; @time pbp = load_pbp(true);
+ 37.171214 seconds (59.72 M allocations: 10.669 GiB, 15.75% gc time, 24.79% compilation time: &lt;1% of which was recompilation)
+</code></pre><p>Not bad for running on my pretty dinky work laptop (16 GB RM, Intel Core i7-1270P processor)!</p><h2 id="Caching"><a class="docs-heading-anchor" href="#Caching">Caching</a><a id="Caching-1"></a><a class="docs-heading-anchor-permalink" href="#Caching" title="Permalink"></a></h2><p><code>NFLData.jl</code> relies on Julia&#39;s JIT compilation to speed up running large objects into memory. However, JIT compiliation does not persist across sessions. <code>NFLData.jl</code> uses <code>Scratch.jl</code> to cache the data objects referenced across sessions, so subsequent calls that reference the same data objects are faster even if the call comes from a different Julia session. To learn more about this behavior, please visit the <a href="caching/">Caching</a> chapter of this docomentation.</p><h2 id="Logo-Attribution"><a class="docs-heading-anchor" href="#Logo-Attribution">Logo Attribution</a><a id="Logo-Attribution-1"></a><a class="docs-heading-anchor-permalink" href="#Logo-Attribution" title="Permalink"></a></h2><p>The NFLData.jl logo is sourced from <a href="https://fontawesome.com">Font Awesome Free 5.2.0 by @fontawesome</a>. It has been remixed from its original form under the <a href="https://en.wikipedia.org/wiki/en:Creative_Commons">Creative Commons</a> <a href="https://creativecommons.org/licenses/by/4.0/deed.en">Attribution 4.0 International</a> license.</p></article><nav class="docs-footer"><a class="docs-footer-nextpage" href="loaders/">Loaders »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.7.0 on <span class="colophon-date" title="Tuesday 19 August 2025 03:54">Tuesday 19 August 2025</span>. Using Julia version 1.11.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
