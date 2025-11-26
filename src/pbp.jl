@@ -49,7 +49,7 @@ function load_participation(seasons = 2023, include_pbp::Bool = false)
     if maximum(seasons) > 2023
         throw(DomainError(maximum(seasons),"The NFL has ceased to provide participation data for any games following the 2023 season."))
     end
-    df = reduce(vcat, from_url.("https://github.com/nflverse/nflverse-data/releases/download/pbp_participation/pbp_participation_",seasons))
+    df = reduce(vcat, from_url.("https://github.com/nflverse/nflverse-data/releases/download/pbp_participation/pbp_participation_",seasons), cols = :union)
     if include_pbp
         pbp = reduce(vcat, load_pbp.(seasons))
         df = select(df, Not([:old_game_id]))
