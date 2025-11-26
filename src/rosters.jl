@@ -39,11 +39,14 @@ function load_depth_charts(seasons = most_recent_season())
 end
 
 """
-    load_injuries(seasons = most_recent_season())
+    load_injuries(seasons = 2024)
 
 Load weekly NFL injury reports for a given season. Defaults to the most recent season. Pass in `seasons = true` for all available seasons. For information about this resource, see its data dictionary [here](https://nflreadr.nflverse.com/articles/dictionary_injuries.html).
 """
-function load_injuries(seasons = most_recent_season())
+function load_injuries(seasons = 2024)
+    if any(seasons .>= 2025)
+        throw(DomainError(minimum(years_to_check),"No NFL injury data available after 2024!"))
+    end
     seasons = check_years(seasons, 2009, "NFL injury data", true)
     df = reduce(vcat, from_url.("https://github.com/nflverse/nflverse-data/releases/download/injuries/injuries_",seasons))
     return df
