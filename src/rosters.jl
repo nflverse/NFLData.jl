@@ -15,6 +15,7 @@ export load_rosters
 export load_rosters_weekly
 export load_contracts
 export load_draft_picks
+export load_combine
 export load_teams
 export load_trades
 
@@ -90,6 +91,18 @@ Load NFL draft picks. For information about this resource, see its data dictiona
 """
 function load_draft_picks()
     return from_url("https://github.com/nflverse/nflverse-data/releases/download/draft_picks/draft_picks")
+end
+
+"""
+    load_combine(seasons = true)
+
+Load NFL Scouting Combine data, sourced from [Pro-Football-Reference.com](https://www.pro-football-reference.com/). Defaults to all available seasons (2000 to present). Pass in a single year or a range of years to query specific seasons, or `seasons = true` for all available seasons. For information about this resource, see its data dictionary [here](https://nflreadr.nflverse.com/articles/dictionary_combine.html).
+"""
+function load_combine(seasons = true)
+    seasons = check_years(seasons, 2000, "NFL combine data")
+    df = from_url("https://github.com/nflverse/nflverse-data/releases/download/combine/combine")
+    df = df[in.(df.season, [seasons]), :]
+    return df
 end
 
 """

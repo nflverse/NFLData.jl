@@ -191,6 +191,22 @@ ERROR: DomainError with 1995:
 No NFL PBP data available prior to 1999\!
 ```
 
+Some season-queryable resources are stored as a single file rather than one file per season. `load_combine()` is one such resource: it returns NFL Scouting Combine results and, unlike most season-queryable loaders, defaults to returning *all* available seasons (2000 to present). Pass a single year or a range of years to restrict the results.
+
+```julia
+julia> load_combine(2023)
+331×18 DataFrame
+ Row │ season  draft_year  draft_team             draft_round  draft_ovr  pfr_id     cfb_id ⋯
+     │ Int32?  Int32?      String?                Int32?       Int32?     String?    String ⋯
+─────┼──────────────────────────────────────────────────────────────────────────────────────
+   1 │   2023        2023  Carolina Panthers                1          1  YounBr02   bryce- ⋯
+   2 │   2023        2023  Houston Texans                   1          2  StroCJ00   c-j-st
+   3 │   2023        2023  Houston Texans                   1          3  AndeWi01   will-a
+  ⋮  │   ⋮         ⋮                ⋮                  ⋮           ⋮          ⋮          ⋮   ⋱
+ 331 │   2023     missing  missing                    missing    missing  missing    jason- ⋯
+                                                          11 columns and 327 rows omitted
+```
+
 ### Other queries
 
 Some data is available to queried with other parameters. For example, you can query ESPN quarterback rating (QBR) data grouped by season or by week:

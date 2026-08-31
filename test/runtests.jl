@@ -34,6 +34,12 @@ PKG_UUID = UUID("38e18452-fdda-4cae-b91e-088906595f57")
     @testset "load_draft_picks" begin
         @test size(load_draft_picks())[1] > 0
     end
+    @testset "load_combine" begin
+        @test size(load_combine())[1] > 0
+        @test size(load_combine(2023))[1] > 0
+        @test size(load_combine(2022:2023))[1] > 0
+        @test all(load_combine(2023).season .== 2023)
+    end
     @testset "load_espn_qbr" begin
         @test size(load_espn_qbr("week"))[1] > 0
         @test size(load_espn_qbr("season"))[1] > 0

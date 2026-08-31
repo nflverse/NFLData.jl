@@ -28,6 +28,7 @@ export load_pbp
 export load_contracts
 export load_depth_charts
 export load_draft_picks
+export load_combine
 export load_espn_qbr
 export load_ff_playerids
 export load_ff_rankings
