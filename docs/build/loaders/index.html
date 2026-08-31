@@ -1,31 +1,13 @@
-# Loaders
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Loaders · NFLData.jl</title><meta name="title" content="Loaders · NFLData.jl"/><meta property="og:title" content="Loaders · NFLData.jl"/><meta property="twitter:title" content="Loaders · NFLData.jl"/><meta name="description" content="Documentation for NFLData.jl."/><meta property="og:description" content="Documentation for NFLData.jl."/><meta property="twitter:description" content="Documentation for NFLData.jl."/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.png" alt="NFLData.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">NFLData.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li class="is-active"><a class="tocitem" href>Loaders</a><ul class="internal"><li><a class="tocitem" href="#Available-resources"><span>Available resources</span></a></li><li><a class="tocitem" href="#Data-dictionaries"><span>Data dictionaries</span></a></li></ul></li><li><a class="tocitem" href="../helpers/">Utilities</a></li><li><a class="tocitem" href="../caching/">Caching</a></li><li><a class="tocitem" href="../additional/">NFLVerse and additional resources</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Loaders</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Loaders</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/nflverse/NFLData.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/nflverse/NFLData.jl/blob/main/docs/src/loaders.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Loaders"><a class="docs-heading-anchor" href="#Loaders">Loaders</a><a id="Loaders-1"></a><a class="docs-heading-anchor-permalink" href="#Loaders" title="Permalink"></a></h1><p>The primary purpose of <code>NFLData.jl</code> is to load sports data from the NFL into Julia. All functions that load data into Julia are prefixed with <code>load_*()</code>. All files are loaded in as <a href="https://dataframes.juliadata.org/stable/"><code>DataFrames</code></a>.</p><p>To load a data resource into memory, when a <code>load_*()</code> function is called initially, <code>NFLData.jl</code> downloads the data resource as a <code>.parquet</code>, <code>.csv</code>, or <code>.csv.gz</code> file into a Scratch space. From there, <code>NFLData.jl</code> reads the data into memory as a DataFrame. If the data object is referenced again, then the cached file (from the Scratch space) is read into memory, and the file is not redownloaded unless the cache is cleared. For more information on this behavior, see <a href="../caching/">Caching</a>.</p><h2 id="Available-resources"><a class="docs-heading-anchor" href="#Available-resources">Available resources</a><a id="Available-resources-1"></a><a class="docs-heading-anchor-permalink" href="#Available-resources" title="Permalink"></a></h2><p>The data resources available in <code>NFLData.jl</code> are maintained by the <code>nflverse</code> organization (as is this package). These resources are directly stored in a variety of places, but most commonly as releases in the <a href="https://github.com/nflverse/nflverse-data/releases"><code>nflverse/nflverse-data</code> repository</a>. These data resources are typically sourced directly from the NFL and its various APIs, but other third party resources are represented as well, such as data from <a href="https://www.pro-football-reference.com/">pro-football-reference.com</a>.</p><p>For a complete list of what resources are available, consult the <a href="https://nflreadr.nflverse.com/reference/index.html"><code>{nflreadr}</code></a> documentation–all <code>load_*()</code> functions from <code>{nflreadr}</code> have been implemented in <code>NFLData.jl</code>, and the arguments are all (approximately) the same.</p><p>Some examples are provided below in terms of how to read and query these <code>load_*()</code> functions.</p><h3 id="Universal-data-resources"><a class="docs-heading-anchor" href="#Universal-data-resources">Universal data resources</a><a id="Universal-data-resources-1"></a><a class="docs-heading-anchor-permalink" href="#Universal-data-resources" title="Permalink"></a></h3><p>Many loaders do not take any arguments, and simply load a data resource into a Julia environment. For example, <code>load_players()</code> simply returns all players in the NFL&#39;s database, past and present.</p><pre><code class="language-julia hljs">julia&gt; using NFLData
 
-The primary purpose of `NFLData.jl` is to load sports data from the NFL into Julia. All functions that load data into Julia are prefixed with `load_*()`. All files are loaded in as [`DataFrames`](https://dataframes.juliadata.org/stable/).
-
-To load a data resource into memory, when a `load_*()` function is called initially, `NFLData.jl` downloads the data resource as a `.parquet`, `.csv`, or `.csv.gz` file into a Scratch space. From there, `NFLData.jl` reads the data into memory as a DataFrame. If the data object is referenced again, then the cached file (from the Scratch space) is read into memory, and the file is not redownloaded unless the cache is cleared. For more information on this behavior, see [Caching](caching.md).
-
-## Available resources
-
-The data resources available in `NFLData.jl` are maintained by the `nflverse` organization (as is this package). These resources are directly stored in a variety of places, but most commonly as releases in the [`nflverse/nflverse-data` repository](https://github.com/nflverse/nflverse-data/releases). These data resources are typically sourced directly from the NFL and its various APIs, but other third party resources are represented as well, such as data from [pro-football-reference.com](https://www.pro-football-reference.com/).
-
-For a complete list of what resources are available, consult the [`{nflreadr}`](https://nflreadr.nflverse.com/reference/index.html) documentation--all `load_*()` functions from `{nflreadr}` have been implemented in `NFLData.jl`, and the arguments are all (approximately) the same.
-
-Some examples are provided below in terms of how to read and query these `load_*()` functions.
-
-### Universal data resources
-
-Many loaders do not take any arguments, and simply load a data resource into a Julia environment. For example, `load_players()` simply returns all players in the NFL's database, past and present.
-
-```julia
-julia> using NFLData
-
-julia> load_players()
+julia&gt; load_players()
 20753×32 DataFrame
    Row │ status   display_name      first_name  last_name  esb_id     gsis_id     birth_da ⋯
        │ String?  String?           String?     String?    String?    String?     String?  ⋯
 ───────┼────────────────────────────────────────────────────────────────────────────────────
-     1 │ RET      'Omar Ellison     'Omar       Ellison    ELL711319  00-0004866  1971-10- ⋯
-     2 │ ACT      A'Shawn Robinson  A'Shawn     Robinson   ROB367960  00-0032889  1995-03-
+     1 │ RET      &#39;Omar Ellison     &#39;Omar       Ellison    ELL711319  00-0004866  1971-10- ⋯
+     2 │ ACT      A&#39;Shawn Robinson  A&#39;Shawn     Robinson   ROB367960  00-0032889  1995-03-
      3 │ DEV      A.J. Arcuri       A.J.        Arcuri     ARC716900  00-0037845  1997-08-
      4 │ ACT      A.J. Barner       A.J.        Barner     BAR235889  00-0039793  2002-05-
      5 │ RES      A.J. Bouye        Arlandus    Bouye      BOU651714  00-0030228  1991-08- ⋯
@@ -46,15 +28,7 @@ julia> load_players()
  20751 │ CUT      Zurlon Tipton     Zurlon      Tipton     TIP645432  00-0030855  1989-04-
  20752 │ DEV      Zyon Gilbert      Zyon        Gilbert    GIL144859  00-0037373  1999-02-
  20753 │ ACT      Zyon McCollum     Zyon        McCollum   MCC496223  00-0037268  1999-05- ⋯
-                                                           26 columns and 20732 rows omitted
-```
-
-### Queryable by season
-
-Many loaders can query by season. By default, these loaders will return the most recent season of data.
-
-```julia
-julia> load_pbp() # 2024 season thru week 2
+                                                           26 columns and 20732 rows omitted</code></pre><h3 id="Queryable-by-season"><a class="docs-heading-anchor" href="#Queryable-by-season">Queryable by season</a><a id="Queryable-by-season-1"></a><a class="docs-heading-anchor-permalink" href="#Queryable-by-season" title="Permalink"></a></h3><p>Many loaders can query by season. By default, these loaders will return the most recent season of data.</p><pre><code class="language-julia hljs">julia&gt; load_pbp() # 2024 season thru week 2
 5288×372 DataFrame
   Row │ play_id   game_id          old_game_id  home_team  away_team  season_type  week    ⋯
       │ Float64?  String?          String?      String?    String?    String?      Int32?  ⋯
@@ -81,13 +55,7 @@ julia> load_pbp() # 2024 season thru week 2
  5286 │   4256.0  2024_02_TB_DET   2024091503   DET        TB         REG               2
  5287 │   4279.0  2024_02_TB_DET   2024091503   DET        TB         REG               2
  5288 │   4301.0  2024_02_TB_DET   2024091503   DET        TB         REG               2  ⋯
-                                                           365 columns and 5267 rows omitted
-```
-
-You can return a different season of data, if available, by passing in the year to query:
-
-```julia
-julia> load_pbp(2023)
+                                                           365 columns and 5267 rows omitted</code></pre><p>You can return a different season of data, if available, by passing in the year to query:</p><pre><code class="language-julia hljs">julia&gt; load_pbp(2023)
 49665×372 DataFrame
    Row │ play_id   game_id          old_game_id  home_team  away_team  season_type  week   ⋯
        │ Float64?  String?          String?      String?    String?    String?      Int32? ⋯
@@ -114,13 +82,7 @@ julia> load_pbp(2023)
  49663 │   4835.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
  49664 │   4860.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
  49665 │   4881.0  2023_22_SF_KC    2024021100   KC         SF         POST             22 ⋯
-                                                          365 columns and 49644 rows omitted
-```
-
-To get data for multiple years, pass a range of years into the function.
-
-```julia
-julia> load_pbp(2022:2023)
+                                                          365 columns and 49644 rows omitted</code></pre><p>To get data for multiple years, pass a range of years into the function.</p><pre><code class="language-julia hljs">julia&gt; load_pbp(2022:2023)
 99099×372 DataFrame
    Row │ play_id   game_id          old_game_id  home_team  away_team  season_type  week   ⋯
        │ Float64?  String?          String?      String?    String?    String?      Int32? ⋯
@@ -147,13 +109,7 @@ julia> load_pbp(2022:2023)
  99097 │   4835.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
  99098 │   4860.0  2023_22_SF_KC    2024021100   KC         SF         POST             22
  99099 │   4881.0  2023_22_SF_KC    2024021100   KC         SF         POST             22 ⋯
-                                                          365 columns and 99078 rows omitted
-```
-
-To get all years of data for a resource, pass `true` into the function. Be advised that this may take a few seconds.
-
-```julia
-julia> load_pbp(true)
+                                                          365 columns and 99078 rows omitted</code></pre><p>To get all years of data for a resource, pass <code>true</code> into the function. Be advised that this may take a few seconds.</p><pre><code class="language-julia hljs">julia&gt; load_pbp(true)
 1186651×372 DataFrame
      Row │ play_id   game_id          old_game_id  home_team  away_team  season_type  week ⋯
          │ Float64?  String?          String?      String?    String?    String?      Int3 ⋯
@@ -180,21 +136,9 @@ julia> load_pbp(true)
  1186649 │   4256.0  2024_02_TB_DET   2024091503   DET        TB         REG
  1186650 │   4279.0  2024_02_TB_DET   2024091503   DET        TB         REG
  1186651 │   4301.0  2024_02_TB_DET   2024091503   DET        TB         REG               ⋯
-                                                        366 columns and 1186630 rows omitted
-```
-
-Trying to query a resource for a year where data is unavailable will throw an error.
-
-```julia
-julia> load_pbp(1995)
+                                                        366 columns and 1186630 rows omitted</code></pre><p>Trying to query a resource for a year where data is unavailable will throw an error.</p><pre><code class="language-julia hljs">julia&gt; load_pbp(1995)
 ERROR: DomainError with 1995:
-No NFL PBP data available prior to 1999\!
-```
-
-Some season-queryable resources are stored as a single file rather than one file per season. `load_combine()` is one such resource: it returns NFL Scouting Combine results and, unlike most season-queryable loaders, defaults to returning *all* available seasons (2000 to present). Pass a single year or a range of years to restrict the results.
-
-```julia
-julia> load_combine(2023)
+No NFL PBP data available prior to 1999\!</code></pre><p>Some season-queryable resources are stored as a single file rather than one file per season. <code>load_combine()</code> is one such resource: it returns NFL Scouting Combine results and, unlike most season-queryable loaders, defaults to returning <em>all</em> available seasons (2000 to present). Pass a single year or a range of years to restrict the results.</p><pre><code class="language-julia hljs">julia&gt; load_combine(2023)
 331×18 DataFrame
  Row │ season  draft_year  draft_team             draft_round  draft_ovr  pfr_id     cfb_id ⋯
      │ Int32?  Int32?      String?                Int32?       Int32?     String?    String ⋯
@@ -204,15 +148,7 @@ julia> load_combine(2023)
    3 │   2023        2023  Houston Texans                   1          3  AndeWi01   will-a
   ⋮  │   ⋮         ⋮                ⋮                  ⋮           ⋮          ⋮          ⋮   ⋱
  331 │   2023     missing  missing                    missing    missing  missing    jason- ⋯
-                                                          11 columns and 327 rows omitted
-```
-
-### Other queries
-
-Some data is available to queried with other parameters. For example, you can query ESPN quarterback rating (QBR) data grouped by season or by week:
-
-```julia
-julia> load_espn_qbr("season") # by season
+                                                          11 columns and 327 rows omitted</code></pre><h3 id="Other-queries"><a class="docs-heading-anchor" href="#Other-queries">Other queries</a><a id="Other-queries-1"></a><a class="docs-heading-anchor-permalink" href="#Other-queries" title="Permalink"></a></h3><p>Some data is available to queried with other parameters. For example, you can query ESPN quarterback rating (QBR) data grouped by season or by week:</p><pre><code class="language-julia hljs">julia&gt; load_espn_qbr(&quot;season&quot;) # by season
 1413×23 DataFrame
   Row │ season  season_type  game_week     team_abb  player_id  name_short         rank    ⋯
       │ Int32?  String?      String?       String?   String?    String?            Float64 ⋯
@@ -241,7 +177,7 @@ julia> load_espn_qbr("season") # by season
  1413 │   2024  Regular      Season Total  ARI       4360175    C. Tune            missing ⋯
                                                             17 columns and 1392 rows omitted
 
-julia> load_espn_qbr("week") # by week
+julia&gt; load_espn_qbr(&quot;week&quot;) # by week
 9604×30 DataFrame
   Row │ season  season_type  game_id    game_week  week_text  team_abb  player_id  name_sh ⋯
       │ Int32?  String?      String?    Int32?     String?    String?   String?    String? ⋯
@@ -268,10 +204,4 @@ julia> load_espn_qbr("week") # by week
  9602 │   2024  Regular      401671761          1  Week 1     CLE       3122840    D. Wats
  9603 │   2024  Regular      401671807          2  Week 2     BUF       3918298    J. Alle
  9604 │   2024  Regular      401671807          2  Week 2     MIA       4241479    T. Tago ⋯
-                                                            23 columns and 9583 rows omitted
-```
-
-## Data dictionaries
-
-Data dictionaries for almost every data resource available through a `load_*()` function is available on the [`{nflreadr}` website](https://nflreadr.nflverse.com/articles/index.html).
-
+                                                            23 columns and 9583 rows omitted</code></pre><h2 id="Data-dictionaries"><a class="docs-heading-anchor" href="#Data-dictionaries">Data dictionaries</a><a id="Data-dictionaries-1"></a><a class="docs-heading-anchor-permalink" href="#Data-dictionaries" title="Permalink"></a></h2><p>Data dictionaries for almost every data resource available through a <code>load_*()</code> function is available on the <a href="https://nflreadr.nflverse.com/articles/index.html"><code>{nflreadr}</code> website</a>.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../">« Home</a><a class="docs-footer-nextpage" href="../helpers/">Utilities »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.7.0 on <span class="colophon-date" title="Monday 31 August 2026 12:11">Monday 31 August 2026</span>. Using Julia version 1.12.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
